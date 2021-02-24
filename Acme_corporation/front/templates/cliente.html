@@ -1,0 +1,77 @@
+{% extends "padre.html" %}
+
+
+{% load static %}
+
+{% block title %}
+
+ <title>Clientes</title>
+
+ {% endblock %}
+
+ {% block content%}
+
+ <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+    <!--=================== filter portfolio start====================-->
+ <div class="portfolio gutters grid img-container align-content-center" >
+  
+         
+    <br>     
+    <br>
+    <div class="mt75 row justify-content-center">
+
+        <form action="/agregarpersona" method="GET">
+        <div class="col-lg-2 col-12">
+            <button type="submit" class="btn btn-primary">Agregar</button>
+        </div>
+        </form>
+        
+        <form action="/modipersona" method="GET">
+        <div class="col-lg-2 col-12">
+            <button type="submit" class="btn btn-primary">Modificar</button>
+        </div>
+        </form>
+        
+    </div>
+    
+    <br>     
+    <br>
+ 
+    <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Cedula</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+
+        {% for persona in personas %}
+
+        <tr>
+        <th scope="row">{{persona.id_persona}}</th>
+        <td>{{persona.Nombre}}</td>
+        <td>{{persona.Cedula}}</td>
+        <td>{{persona.Telefono}}</td>
+        <td>{{persona.Fecha|date:"d/m/y"}}</td>
+        
+      </tr>
+    
+        {% endfor %}
+        
+        
+    </tbody>
+
+    </form>
+  
+
+  </table>
+
+
+  </div>
+ </div>
+ {% endblock %}

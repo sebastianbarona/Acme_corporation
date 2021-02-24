@@ -1,0 +1,72 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block content%}
+
+<div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+  <div>
+      <div class="img_card">
+          <div class="row justify-content-center">
+              <div class="col-md-6 col-7 content_section">
+                  <!--=================== contact info and form start====================-->
+                          <div> 
+                             <h3> Modificar Carro </h3>
+                             <p> Bienvenido a Cacharrerias Don Andres recuerde llenar muy bien los campos antes de Modificar un Producto </p>
+                             <br>
+                          </div>
+              </div>
+          </div>     
+            
+                      <div class="row justify-content-center">
+                                  
+                           <div class="mt75 row justify-content-center">
+                                                      
+
+                                {% for i in shelf %}
+
+                                <div class="grid-item branding col-sm-3 col-md-3 col-lg-3">
+                                <div class="card" style="width:auto;">
+                                <div class="card-body">    
+                                <h5 class="card-title"><strong>{{i.Id_compra }}</strong></h5>
+                                <p class="card-text"><strong>{{i.Placa }}</strong></p>
+                                <p class="card-text"><strong>Cliente :</strong>  <strong style="color: brown;">{{i.Vendedor}}</strong> </p>
+                                <p class="card-text"><strong>Comprador:</strong> <strong style="color: brown;">{{i.Comprador }}</strong></p>
+                                <p class="card-text"><strong>Fecha :</strong> <strong style="color: brown;">{{ i.Fecha }}</strong></p>
+                                <p class="card-text"><strong>Precio :</strong> <strong style="color: brown;">{{ i.Precio }}</strong></p>
+                                
+                                  <center>
+                                <form action="/resulmodicompra/{{i.pk}}" method="GET">
+                                 <button type="submit" class="btn btn-primary " style="width: 50%;">Edit</button>
+                                </form>
+                                <br>
+                                <form action="/eliminarcompra/{{i.pk}}" method="GET">
+                                 <button type="submit" class="btn btn-primary" style="width: 50%;">Eliminar</button>
+                                </form>
+                              </center>
+                                </div>
+                              </div>
+                            </div>
+                            <br>
+                            
+                            {% endfor %}
+                        </div>
+
+
+                          </div>
+                      </div>
+                  </div>
+                  <!--=================== contact info and form end====================-->
+              </div>
+          </div>              
+        </div>
+  </div>
+</div>
+
+{% endblock %}

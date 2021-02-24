@@ -1,0 +1,56 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block content%}
+
+<div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+  <div>
+      <div class="img_card">
+          <div class="row justify-content-center">
+              <div class="col-md-6 col-7 content_section">
+                  <!--=================== contact info and form start====================-->
+                          <div> 
+                             <h3> Modificar Carro </h3>
+                             <p> Bienvenido a Cacharrerias Don Andres recuerde llenar muy bien los campos antes de Modificar un Producto </p>
+                             <br>
+                          </div>
+              </div>
+          </div>     
+          
+      <div class="row justify-content-center">
+                                  
+        <div class="mt75 row justify-content-center">
+                                           
+                    
+        {% for cliente in shelf %}
+
+            <div class="grid-item branding col-sm-12 col-md-6 col-lg-3">
+            <div class="card-body">    
+                <p class="card-title"><strong>{{cliente.Nombre }}</strong></p>
+                <p class="card-text"><strong>Cedula :</strong> <strong style="color: brown;">{{ cliente.Cedula }}</strong></p>
+                <p class="card-text"><strong>Telefono :</strong> <strong style="color: brown;">{{ cliente.Telefono }}</strong></p>
+                <p class="card-text"><strong>Fecha Creacion :</strong> <strong style="color: brown;">{{ cliente.Fecha}}</strong></p>
+                    
+                <form action="/resulmodipersona/{{cliente.Cedula}}" method="GET">
+                  <button type="submit" class="btn btn-primary">Edit</button>
+                </form>
+                 <br>
+               <form action="/eliminarpersona/{{cliente.Cedula}}" method="GET">
+                  <button type="submit" class="btn btn-primary">Eliminar</button>
+                </form>
+             </div>
+            </div>
+            {% endfor %}
+          </div>                                             
+    </div>
+
+
+
+{% endblock %}

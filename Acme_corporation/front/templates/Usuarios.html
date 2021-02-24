@@ -1,0 +1,60 @@
+{% extends "padre.html" %}
+
+
+{% load static %}
+
+{% block title %}
+
+ <title>Usuarios</title>
+
+ {% endblock %}
+
+ {% block content%}
+
+<div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+    <!--=================== filter portfolio start====================-->
+ <div class="portfolio gutters grid img-container align-content-center" >
+ <br>     
+ <br>
+    <div class="mt75 row justify-content-center">
+      <form action="/agregarusuario" method="GET">
+        <div class="col-lg-2 col-12">
+         <button type="submit" class="btn btn-primary">Agregar</button>
+        </div>
+     </form>
+      <form action="/modiusuario" method="GET">
+        <div class="col-lg-2 col-12">
+         <button type="submit" class="btn btn-primary">Modificar</button>
+        </div>
+     </form>
+    </div>
+ <br>     
+ <br>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Nombres</th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Disponible</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in usuarios %}
+      <tr>
+        <th scope="row">{{s.Username}}</th>
+        <td>{{s.Email}}</td>
+        <td>{{s.Nombres}}</td>
+        <td>{{s.Apellidos}}</td>
+        <td>{{s.Imagen_Perfil}}</td>
+        <td>{{s.Usuario_activo}}</td>
+      </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+ </div>
+</div> 
+ {% endblock %}
