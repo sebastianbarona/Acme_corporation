@@ -214,7 +214,7 @@ class CrearCompra(CreateView):
     model = Compra
     template_name = 'agregar_compra.html'
     form_class = FormularioCompra
-    success_url = reverse_lazy('Compra')
+    success_url = reverse_lazy('AGRcarro')
 
 class ActualizarCompra(UpdateView):
 
@@ -240,7 +240,6 @@ class Login(TemplateView):
         usuarios = Usuarios.objects.all()
         return render(request,self.template_name,{'shelf':usuarios}) 
 
-
 def verificacion(request,Id_usario):
         Id_usario = int (Id_usario)
         try:
@@ -258,7 +257,6 @@ def verificacion(request,Id_usario):
         return render(request,"home.html")
 
 #////////////////////////////////////////////////////////Report/////////////////////////////////////////////////////////////////////////
-
 
 class ReporteVenta(object):
 

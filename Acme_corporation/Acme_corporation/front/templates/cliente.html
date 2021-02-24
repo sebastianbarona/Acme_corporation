@@ -40,8 +40,8 @@
     <table class="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nombre</th>
+        <th scope="col">Nombres</th>
+        <th scope="col">Apellidos</th>
         <th scope="col">Cedula</th>
         <th scope="col">Telefono</th>
         <th scope="col">Fecha</th>
@@ -53,8 +53,8 @@
         {% for persona in personas %}
 
         <tr>
-        <th scope="row">{{persona.id_persona}}</th>
-        <td>{{persona.Nombre}}</td>
+        <th scope="row">{{persona.Nombres}}</th>
+        <td>{{persona.Apellidos}}</td>
         <td>{{persona.Cedula}}</td>
         <td>{{persona.Telefono}}</td>
         <td>{{persona.Fecha|date:"d/m/y"}}</td>

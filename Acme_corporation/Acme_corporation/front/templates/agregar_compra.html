@@ -18,39 +18,30 @@
                   <div class="content_box">
                       <div class="content_box_inner">
                           <div>
-                              <h3>
-                                 Agregar Compra
-                              </h3>
-                              <p>
-                             Bienvenido a Cacharrerias Don Andres recuerde llenar muy bien los campos antes de agregar un Proveedor 
-                              </p>
-                              
-                                  
-                              <div class="mt75 row justify-content-center">
+                              <h3> Agregar Compra </h3>
+                              <p> Bienvenido a Cacharrerias Don Andres recuerde llenar muy bien los campos antes de agregar un Proveedor </p>
+                                <div class="mt75 row justify-content-center">
                                 <br>
                                 <br>
+                                {% if not form.errors %}
 
-                                {% if form.errors %}
-
-                                <div class="alert alert-danger" role="alert">No Registrado</div>
+                                    <div class="alert alert-danger" role="alert">No Registrado</div>
               
-                                {% endif %}
+                                {% else %}
 
-                                <div class="alert alert-light" role="alert">{{mensaje}}</div>
-                                 
+                                    <div class="alert alert-light" role="alert">{{mensaje}}</div>
+                                
+                                {% endif %}
 
                                 <div class="col-12">
                                     <br>
                                     <form action="/procesar_proveedor" method="POST" >{% csrf_token %}
                                         
                                         <table>{{form.as_table}}</table>
-
                                         <br>
                                         <button type="submit" class="btn btn-primary">Guardar</button>
-
                                 </form>
                                 </div>
-
                               </div>
                           </div>
                       </div>
