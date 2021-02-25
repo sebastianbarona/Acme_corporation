@@ -12,8 +12,8 @@ from reportlab.lib.units import inch, mm
 from django.views.generic import View,TemplateView,ListView,DeleteView,UpdateView,CreateView
 from django.urls import reverse_lazy
 
-
 # Create your views here.
+
 
 class Padre(TemplateView):
     template_name = 'padre.html'
@@ -31,21 +31,17 @@ class Inicio(TemplateView):
         ventas = Venta.objects.all()
         carros = Carros.objects.all()
         compras = Compra.objects.all()
-        return render(request,self.template_name,{'personas':personas,'ventas':ventas,'carros':carros,'compras':compras}) 
+        usuario = Usuarios.objects.all()
+        return render(request,self.template_name,{'usuario':usuario,'personas':personas,'ventas':ventas,'carros':carros,'compras':compras}) 
 
 #////////////////////////////////////////////////////////USUARIO/////////////////////////////////////////////////////////////////////////
 
 class ListaUsuarios(ListView):    
-    model = Usuarios
+
     template_name = 'Usuarios.html'
     context_object_name = 'usuarios'
-    queryset = Usuarios.objects.all()
+    queryset = Usuarios.objects.all()    
 
-class CrearUsuario(CreateView):
-    model = Usuarios
-    template_name = 'agregar_usuario.html'
-    form_class = FormularioUsuarios
-    success_url = reverse_lazy('Usuario')
 
 class ModificarUsuario(TemplateView):
         
@@ -54,6 +50,13 @@ class ModificarUsuario(TemplateView):
     def get(self,request):
         usuarios = Usuarios.objects.all()
         return render(request,self.template_name,{'shelf':usuarios}) 
+
+class CrearUsuario(CreateView):
+    model = Usuarios
+    template_name = 'agregar_usuario.html'
+    form_class = FormularioUsuarios
+    success_url = reverse_lazy('Usuario')
+
 
 class ActualizarUsuario(UpdateView):
 
@@ -71,10 +74,11 @@ class EliminarUsuario(DeleteView):
 
 class ListaPersonas(ListView):
         
-    model = Personas
     template_name = 'cliente.html'
-    context_object_name = 'personas'
-    queryset = Personas.objects.all()
+    def get(self,request):
+        personas = Personas.objects.all() 
+        usuarios = Usuarios.objects.all()
+        return render(request,self.template_name,{'personas':personas,'usuario':usuarios}) 
 
 class ModificarPersona(TemplateView):
         
@@ -82,7 +86,9 @@ class ModificarPersona(TemplateView):
 
     def get(self,request):
         personas = Personas.objects.all()
-        return render(request,self.template_name,{'shelf':personas}) 
+        usuarios = Usuarios.objects.all()
+
+        return render(request,self.template_name,{'usuario':usuarios,'shelf':personas}) 
 
 class CrearPersona(CreateView):
 
@@ -106,10 +112,12 @@ class EliminarPersona(DeleteView):
 
 #////////////////////////////////////////////////////////CARROS/////////////////////////////////////////////////////////////////////////
 class ListaCarros(ListView):
-    model = Carros
+
     template_name = 'carros.html'
-    context_object_name = 'carro'
-    queryset = Carros.objects.all()
+    def get(self,request):
+        carro = Carros.objects.all() 
+        usuarios = Usuarios.objects.all()
+        return render(request,self.template_name,{'carro':carro,'usuario':usuarios}) 
 
 class ModificarCarro(TemplateView):
         
@@ -117,7 +125,9 @@ class ModificarCarro(TemplateView):
 
     def get(self,request):
         carros = Carros.objects.all()
-        return render(request,self.template_name,{'shelf':carros}) 
+        usuarios = Usuarios.objects.all()
+
+        return render(request,self.template_name,{'usuario':usuarios,'shelf':carros}) 
 
 class CrearCarro(CreateView):
 
@@ -141,11 +151,13 @@ class EliminarCarro(DeleteView):
 #////////////////////////////////////////////////////////VENTAS/////////////////////////////////////////////////////////////////////////
 
 class ListaVentas(ListView):
-        
-    model = Venta
     template_name = 'ventas.html'
-    context_object_name = 'ventas'
-    queryset = Venta.objects.all()
+   
+    def get(self,request):
+        ventas = Venta.objects.all() 
+        usuarios = Usuarios.objects.all()
+        return render(request,self.template_name,{'ventas':ventas,'usuario':usuarios}) 
+
 
 class ModificarVenta(TemplateView):
         
@@ -153,7 +165,9 @@ class ModificarVenta(TemplateView):
 
     def get(self,request):
         ventas = Venta.objects.all()
-        return render(request,self.template_name,{'shelf':ventas}) 
+        usuarios = Usuarios.objects.all()
+
+        return render(request,self.template_name,{'usuario':usuarios,'shelf':ventas}) 
 
 class CrearVenta(CreateView):
 
@@ -196,10 +210,12 @@ class FormularioVentaView(HttpRequest):
 
 class ListaCompras(ListView):
         
-    model = Compra
     template_name = 'compras.html'
-    context_object_name = 'compras'
-    queryset = Compra.objects.all()
+   
+    def get(self,request):
+        compras = Compra.objects.all() 
+        usuarios = Usuarios.objects.all()
+        return render(request,self.template_name,{'compras':compras,'usuario':usuarios}) 
 
 class ModificarCompra(TemplateView):
         
@@ -207,14 +223,22 @@ class ModificarCompra(TemplateView):
 
     def get(self,request):
         compras = Compra.objects.all()
-        return render(request,self.template_name,{'shelf':compras}) 
+        usuarios = Usuarios.objects.all()
+        return render(request,self.template_name,{'usuario':usuarios,'shelf':compras}) 
 
 class CrearCompra(CreateView):
-
     model = Compra
     template_name = 'agregar_compra.html'
     form_class = FormularioCompra
-    success_url = reverse_lazy('AGRcarro')
+    success_url = reverse_lazy('CRRusado')
+
+class CrearCarroUsado(CreateView):
+    model = Carros
+    template_name = 'agregar_carro.html'
+    form_class = FormularioCarros
+    success_url = reverse_lazy('Compra')
+
+
 
 class ActualizarCompra(UpdateView):
 
@@ -228,8 +252,6 @@ class EliminarCompra(DeleteView):
     template_name = 'resultados_compra.html'
     success_url = reverse_lazy('Compra')
 
-
-
 #////////////////////////////////////////////////////////LOGIN/////////////////////////////////////////////////////////////////////////
 
 class Login(TemplateView):
@@ -239,6 +261,7 @@ class Login(TemplateView):
     def get(self,request):
         usuarios = Usuarios.objects.all()
         return render(request,self.template_name,{'shelf':usuarios}) 
+
 
 def verificacion(request,Id_usario):
         Id_usario = int (Id_usario)

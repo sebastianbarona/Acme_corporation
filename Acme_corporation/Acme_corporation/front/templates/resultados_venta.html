@@ -8,6 +8,9 @@
 {% endblock %}
 
 {% block content %}
+<div class="row justify-content-center">
+
+
 <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
     <div>
         <div class="img_card">
@@ -17,7 +20,7 @@
                         <div class="content_box_inner">
                             <div>
                                 <h3>
-                                   Modificar Venta Corriente
+                                   Modificar Venta 
                                 </h3>
                                 <p>
                                Bienvenido a Cacharrerias Don Andres recuerde llenar muy bien los campos antes de Modificar una Venta Corriente
@@ -28,7 +31,7 @@
                                     <br>
                                     <br>
 
-                                    {% if miformulario.errors %}
+                                    {% if  form.errors %}
 
                                     <div class="alert alert-danger" role="alert">No Registrado</div>
                   
@@ -42,7 +45,7 @@
                                             {% csrf_token %}
                                             <div class = "mt75 row justify-content-center" >
                                                 
-                                                <table>{{miformulario.as_table}}</table>
+                                                <table>{{form.as_table}}</table>
                                     
                                             </div>                                            
                                             <button type="submit" class="btn btn-lg btn-warning">Submit</button>

@@ -29,6 +29,9 @@
       </a>
       <div class="row justify-content-center">
           <!--=================== side menu ====================-->
+ 
+          {% block content%}
+  
           <div class="col-lg-2 col-md-3 col-12 menu_block">
   
               <!--main menu -->
@@ -101,12 +104,10 @@
   
   
           </div>
-          <!--=================== side menu end====================-->
-  
+         
           <!--=================== content body ====================-->
 
-          {% block content%}
-        
+     
           <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
               <div>
                 <div class="col-md-6 col-5 img_section" style="background-image: url('assets/img/bg/about.png');"></div>

@@ -1,5 +1,5 @@
 from django.urls import path
-from back.views import Login,Padre
+from back.views import Login,Padre,CrearCarroUsado
 from back.views import FormularioVentaView,ReporteVenta
 from back.views import verificacion,CrearPersona,ListaPersonas,ModificarPersona,ActualizarPersona,EliminarPersona
 from back.views import ListaUsuarios,CrearUsuario,ActualizarUsuario,ModificarUsuario,EliminarUsuario
@@ -39,6 +39,7 @@ urlpatterns = [
     path('modicarro',ModificarCarro.as_view(),name="MODcarro"),
     path('eliminarcarro/<str:pk>',EliminarCarro.as_view()),
     path('resulmodicarro/<str:pk>',ActualizarCarro.as_view()),
+    path('carrousado',CrearCarroUsado.as_view(),name="CRRusado"),
 
     #Ventas________________________________________________________________________________________________
 

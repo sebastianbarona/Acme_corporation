@@ -23,7 +23,7 @@
                                 <div class="mt75 row justify-content-center">
                                 <br>
                                 <br>
-                                {% if not form.errors %}
+                                {% if form.errors %}
 
                                     <div class="alert alert-danger" role="alert">No Registrado</div>
               
@@ -35,7 +35,7 @@
 
                                 <div class="col-12">
                                     <br>
-                                    <form action="/procesar_proveedor" method="POST" >{% csrf_token %}
+                                    <form action="" method="POST" >{% csrf_token %}
                                         
                                         <table>{{form.as_table}}</table>
                                         <br>
