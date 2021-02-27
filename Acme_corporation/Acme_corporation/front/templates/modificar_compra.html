@@ -1,0 +1,147 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block content%}
+
+
+<div class="col-lg-2 col-md-3 col-12 menu_block">
+  
+  <!--main menu -->
+  <div class="side_menu_section">
+
+    {% for s in usuario %}
+    <center>
+    <div class="cc-profile-image ">
+        <a href="#">
+            <img src="/Imagen_Perfil/{{s.Imagen_Perfil}}" alt="Image">
+        </a>
+    </div>
+
+    <div class="h2 title">{{s.Username}}</div>
+
+    </center>
+    {% endfor %}
+    <br>
+
+    <ul class="menu_nav">
+          <li class="{% if request.path == '/home' %}active{% endif %}">
+              <a href="{% url 'Home' %}">
+                  Home
+              </a>
+          </li>
+          <li class="{% if request.path == '/usuario' %}active{% endif %}">
+              <a href="{% url 'Usuario' %}">
+                  Usuarios
+              </a>
+          </li>
+
+          <li class="{% if request.path == '/persona' %}active{% endif %}">
+              <a href="{% url 'Persona' %}">
+                  Clientes
+              </a>
+          </li>
+
+          <li class="{% if request.path == '/carro' %}active{% endif %}">
+              <a href="{% url 'Carro' %}">
+                  Carros
+              </a>
+          </li>
+
+          <li class="{% if request.path == '/venta' %}active{% endif %} ">
+              <a href="{% url 'Venta' %}">
+                  Ventas
+              </a>
+          </li>
+
+          <li class="{% if request.path == '/compra' %}active{% endif %} ">
+              <a href="{% url 'Compra' %}">
+                  Compra
+              </a>
+          </li>
+       </ul>
+  </div>            <!--main menu end -->
+
+  <!--filter menu -->
+  <div class="side_menu_section">
+      <h4 class="side_title">filter by:</h4>
+      <ul  id="filtr-container"  class="filter_nav">
+          <li  data-filter="*" class="active"><a href="javascript:void(0)" >all</a></li>
+          <li data-filter=".branding"> <a href="javascript:void(0)">branding</a></li>
+          <li data-filter=".design"><a href="javascript:void(0)">design</a></li>
+          <li data-filter=".photography"><a href="javascript:void(0)">photography</a></li>
+          <li data-filter=".architecture"><a href="javascript:void(0)">architecture</a></li>
+      </ul>
+  </div>
+  <!--filter menu end -->
+
+</div>
+
+
+
+<div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+  <div>
+      <div class="img_card">
+          <div class="row justify-content-center">
+              <div class="col-md-6 col-7 content_section">
+                  <!--=================== contact info and form start====================-->
+                          <div> 
+                             <h3> Modificar Compra </h3>
+                             <p> Bienvenido a Cacharrerias Don Andres recuerde llenar muy bien los campos antes de Modificar un Producto </p>
+                             <br>
+                          </div>
+              </div>
+          </div>     
+            
+                      <div class="row justify-content-center">
+                                  
+                           <div class="mt75 row justify-content-center">
+                                                      
+
+                                {% for i in shelf %}
+
+                                <div class="grid-item branding col-sm-3 col-md-3 col-lg-3">
+                                <div class="card" style="width:auto; min-width: 6cm;" >
+                                <div class="card-body">    
+                                <h5 class="card-title"><strong>{{i.Id_compra }}</strong></h5>
+                                <p class="card-text"><strong>{{i.Placa }}</strong></p>
+                                <p class="card-text"><strong>Cliente :</strong>  <strong style="color: brown;">{{i.Vendedor}}</strong> </p>
+                                <p class="card-text"><strong>Comprador:</strong> <strong style="color: brown;">{{i.Comprador }}</strong></p>
+                                <p class="card-text"><strong>Fecha :</strong> <strong style="color: brown;">{{ i.Fecha }}</strong></p>
+                                <p class="card-text"><strong>Precio :</strong> <strong style="color: brown;">{{ i.Precio }}</strong></p>
+                                
+                                  <center>
+                                <form action="/resulmodicompra/{{i.pk}}" method="GET">
+                                 <button type="submit" class="btn btn-primary " style = "width: 50% ; min-width: 4cm;" >Edit</button>
+                                </form>
+                                <br>
+                                <form action="/eliminarcompra/{{i.pk}}" method="GET">
+                                 <button type="submit" class="btn btn-primary" style = "width: 50% ; min-width: 4cm;" >Eliminar</button>
+                                </form>
+                              </center>
+                                </div>
+                              </div>
+                            </div>
+                            <br>
+                            
+                            {% endfor %}
+                        </div>
+
+
+                          </div>
+                      </div>
+                  </div>
+                  <!--=================== contact info and form end====================-->
+              </div>
+          </div>              
+        </div>
+  </div>
+</div>
+
+{% endblock %}

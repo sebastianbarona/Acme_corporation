@@ -1,0 +1,148 @@
+{% extends "padre.html" %}
+
+ {% block title %}
+
+ <title>Acme Corporation</title>
+    
+ {% endblock %}
+
+{% block content%}
+
+
+<div class="col-lg-2 col-md-3 col-12 menu_block">
+  
+    <!--main menu -->
+    <div class="side_menu_section">
+
+      {% for s in usuario %}
+      <center>
+      <div class="cc-profile-image ">
+          <a href="#">
+              <img src="/Imagen_Perfil/{{s.Imagen_Perfil}}" alt="Image">
+          </a>
+      </div>
+
+      <div class="h2 title">{{s.Username}}</div>
+
+      </center>
+      {% endfor %}
+      <br>
+
+      <ul class="menu_nav">
+            <li class="{% if request.path == '/home' %}active{% endif %}">
+                <a href="{% url 'Home' %}">
+                    Home
+                </a>
+            </li>
+            <li class="{% if request.path == '/usuario' %}active{% endif %}">
+                <a href="{% url 'Usuario' %}">
+                    Usuarios
+                </a>
+            </li>
+
+            <li class="{% if request.path == '/persona' %}active{% endif %}">
+                <a href="{% url 'Persona' %}">
+                    Clientes
+                </a>
+            </li>
+
+            <li class="{% if request.path == '/carro' %}active{% endif %}">
+                <a href="{% url 'Carro' %}">
+                    Carros
+                </a>
+            </li>
+
+            <li class="{% if request.path == '/venta' %}active{% endif %} ">
+                <a href="{% url 'Venta' %}">
+                    Ventas
+                </a>
+            </li>
+
+            <li class="{% if request.path == '/compra' %}active{% endif %} ">
+                <a href="{% url 'Compra' %}">
+                    Compra
+                </a>
+            </li>
+         </ul>
+    </div>            <!--main menu end -->
+
+    <!--filter menu -->
+    <div class="side_menu_section">
+        <h4 class="side_title">filter by:</h4>
+        <ul  id="filtr-container"  class="filter_nav">
+            <li  data-filter="*" class="active"><a href="javascript:void(0)" >all</a></li>
+            <li data-filter=".branding"> <a href="javascript:void(0)">branding</a></li>
+            <li data-filter=".design"><a href="javascript:void(0)">design</a></li>
+            <li data-filter=".photography"><a href="javascript:void(0)">photography</a></li>
+            <li data-filter=".architecture"><a href="javascript:void(0)">architecture</a></li>
+        </ul>
+    </div>
+    <!--filter menu end -->
+
+</div>
+
+
+    <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+        <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+                <div class="img_card">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 col-7 content_section">
+                            <div class="content_box">
+                                <div class="content_box_inner">
+                                    <div>                                       
+                                      <h3>Bienvenido a Corporation</h3><h3 style="color: crimson;"> Acme</h3>
+                                        <p>
+                                            Acme Corporation es una organización formada con el objeto de distribuir toda clase de productos de
+                                             carros de alta calidad, que con lleven a satisfacer las necesidades y expectativas de todos nuestros
+                                              clientes, mediante procesos administrativos eficientes y un talento humano calificado, capacitado, responsable, 
+                                              comprometido, y mejorando permanentemente los estándares del servicio; con el único fin de lograr un mejor nivel de
+                                               vida de todos nuestros clientes y a su vez de nuestro equipo de trabajo.  
+                                              </p>
+                                        <!--=================== counter start====================-->
+                                                                          
+                                        <div class="pt50">
+                                            <div class="row justify-content-center">
+                                                <div class="col-20 col-md-2">
+                                                    <div class="counter_box">
+                                                        <div class="divider"></div>
+                                                        <span class="counter">{{carros|length}}</span>
+                                                        <h5>Carros Totales</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-20 col-md-2">
+                                                    <div class="counter_box">
+                                                        <div class="divider"></div>
+                                                      
+                                                        <span class="counter">{{personas|length}}</span>
+                                                      
+                                                        <h5>Clientes</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-20 col-md-2">
+                                                    <div class="counter_box">
+                                                        <div class="divider"></div>
+                                                        <span class="counter">{{ventas|length}}</span>                                            
+                                                        <h5>Ventas</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-16 col-md-4">
+                                                    <div class="counter_box">
+                                                        <div class="divider"></div>
+                                                        <span class="counter">{{compras|length}}</span>                                            
+                                                        <h5>Compras</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>            
+                    </div>    
+                </div>    
+            </div>    
+        </div>    
+    </div>
+
+{% endblock %}
+

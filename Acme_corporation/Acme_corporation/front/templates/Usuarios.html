@@ -1,0 +1,149 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block title %}
+
+ <title>Usuarios</title>
+
+ {% endblock %}
+
+
+ <div class="col-lg-2 col-md-3 col-12 menu_block">
+  
+  <!--main menu -->
+
+
+    {% block content%}
+
+    <div class="col-lg-2 col-md-3 col-12 menu_block">
+  
+      <!--main menu -->
+      <div class="side_menu_section">
+
+        {% for s in usuarios %}
+        <center>
+        <div class="cc-profile-image ">
+            <a href="#">
+                <img src="/Imagen_Perfil/{{s.Imagen_Perfil}}" alt="Image">
+            </a>
+        </div>
+
+        <div class="h2 title">{{s.Username}}</div>
+
+        </center>
+        {% endfor %}
+        <br>
+
+        <ul class="menu_nav">
+              <li class="{% if request.path == '/home' %}active{% endif %}">
+                  <a href="{% url 'Home' %}">
+                      Home
+                  </a>
+              </li>
+              <li class="{% if request.path == '/usuario' %}active{% endif %}">
+                  <a href="{% url 'Usuario' %}">
+                      Usuarios
+                  </a>
+              </li>
+
+              <li class="{% if request.path == '/persona' %}active{% endif %}">
+                  <a href="{% url 'Persona' %}">
+                      Clientes
+                  </a>
+              </li>
+
+              <li class="{% if request.path == '/carro' %}active{% endif %}">
+                  <a href="{% url 'Carro' %}">
+                      Carros
+                  </a>
+              </li>
+
+              <li class="{% if request.path == '/venta' %}active{% endif %} ">
+                  <a href="{% url 'Venta' %}">
+                      Ventas
+                  </a>
+              </li>
+
+              <li class="{% if request.path == '/compra' %}active{% endif %} ">
+                  <a href="{% url 'Compra' %}">
+                      Compra
+                  </a>
+              </li>
+           </ul>
+      </div>            <!--main menu end -->
+
+      <!--filter menu -->
+      <div class="side_menu_section">
+          <h4 class="side_title">filter by:</h4>
+          <ul  id="filtr-container"  class="filter_nav">
+              <li  data-filter="*" class="active"><a href="javascript:void(0)" >all</a></li>
+              <li data-filter=".branding"> <a href="javascript:void(0)">branding</a></li>
+              <li data-filter=".design"><a href="javascript:void(0)">design</a></li>
+              <li data-filter=".photography"><a href="javascript:void(0)">photography</a></li>
+              <li data-filter=".architecture"><a href="javascript:void(0)">architecture</a></li>
+          </ul>
+      </div>
+      <!--filter menu end -->
+
+
+  </div>
+
+
+<div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+   <!--=================== filter portfolio start====================-->
+
+<div class="portfolio gutters grid img-container align-content-center" >
+ <br>     
+ <br>
+    <div class="mt75 row justify-content-center">
+      <form action="/agregarusuario" method="GET">
+        <div class="col-lg-2 col-12">
+         <button type="submit" class="btn btn-primary">Agregar</button>
+        </div>
+     </form>
+      <form action="/modiusuario" method="GET">
+        <div class="col-lg-2 col-12">
+         <button type="submit" class="btn btn-primary">Modificar</button>
+        </div>
+     </form>
+    </div>
+ <br>     
+ <br>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Nombres</th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Disponible</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in usuarios %}
+      <tr>
+        <th scope="row">{{s.Username}}</th>
+        <td>{{s.Email}}</td>
+        <td>{{s.Nombres}}</td>
+        <td>{{s.Apellidos}}</td>
+        <td>{{s.Imagen_Perfil}}</td>
+        <td>
+
+          <center>
+            <input type="radio" name="opciones" id="opciones_1" value="opcion_1" checked>     
+          
+            
+            <input type="radio" name="opciones" id="opciones_1" value="opcion_2" >
+          </center>
+
+        </td>
+      </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+ </div>
+</div> 
+ {% endblock %}

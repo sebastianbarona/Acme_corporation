@@ -1,0 +1,12 @@
+pip install Django==3.1.7
+pip install psycopg2
+python manage.py runserver
+pip install reportlab
+Descargar PostgreSQL 11.11
+
+python manage.py createsuperuser
+python manage.py makemigrations
+python manage.py migrate 
+
+Sebax47
+1234
