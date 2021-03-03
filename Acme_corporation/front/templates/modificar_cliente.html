@@ -1,0 +1,133 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block content%}
+
+<div class="col-lg-2 col-md-3 col-12 menu_block">
+  
+  <!--main menu -->
+  <div class="side_menu_section">
+
+    {% for s in usuario %}
+    <center>
+    <div class="cc-profile-image ">
+        <a href="#">
+            <img src="/Imagen_Perfil/{{s.Imagen_Perfil}}" alt="Image">
+        </a>
+    </div>
+
+    <div class="h2 title">{{s.Username}}</div>
+
+    </center>
+    {% endfor %}
+    <br>
+
+    <ul class="menu_nav">
+          <li class="{% if request.path == '/home' %}active{% endif %}">
+              <a href="{% url 'Home' %}">
+                  Home
+              </a>
+          </li>
+          <li class="{% if request.path == '/usuario' %}active{% endif %}">
+              <a href="{% url 'Usuario' %}">
+                  Usuarios
+              </a>
+          </li>
+
+          <li class="{% if request.path == '/persona' %}active{% endif %}">
+              <a href="{% url 'Persona' %}">
+                  Clientes
+              </a>
+          </li>
+
+          <li class="{% if request.path == '/carro' %}active{% endif %}">
+              <a href="{% url 'Carro' %}">
+                  Carros
+              </a>
+          </li>
+
+          <li class="{% if request.path == '/venta' %}active{% endif %} ">
+              <a href="{% url 'Venta' %}">
+                  Ventas
+              </a>
+          </li>
+
+          <li class="{% if request.path == '/compra' %}active{% endif %} ">
+              <a href="{% url 'Compra' %}">
+                  Compra
+              </a>
+          </li>
+       </ul>
+  </div>            <!--main menu end -->
+
+  <!--filter menu -->
+  <div class="side_menu_section">
+      <h4 class="side_title">filter by:</h4>
+      <ul  id="filtr-container"  class="filter_nav">
+          <li  data-filter="*" class="active"><a href="javascript:void(0)" >all</a></li>
+          <li data-filter=".branding"> <a href="javascript:void(0)">branding</a></li>
+          <li data-filter=".design"><a href="javascript:void(0)">design</a></li>
+          <li data-filter=".photography"><a href="javascript:void(0)">photography</a></li>
+          <li data-filter=".architecture"><a href="javascript:void(0)">architecture</a></li>
+      </ul>
+  </div>
+  <!--filter menu end -->
+
+</div>
+
+
+
+<div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+  <div>
+      <div class="img_card">
+          <div class="row justify-content-center">
+              <div class="col-md-6 col-7 content_section">
+                  <!--=================== contact info and form start====================-->
+                          <div> 
+                             <h3> Modificar Cliente </h3>
+                             <p> Bienvenido a Acme Corporation, recuerde llenar muy bien los campos antes de modificar a un cliente. </p>
+                             <br>
+                          </div>
+              </div>
+          </div>     
+          
+      <div class="row justify-content-center">
+                                  
+        <div class="mt75 row justify-content-center">
+                                           
+                    
+        {% for cliente in shelf %}
+
+            <div class="grid-item branding col-sm-12 col-md-6 col-lg-3">
+            <div class="card" style="width:auto; min-width: 6cm;" >                             
+            <div class="card-body">    
+                <p class="card-title"><strong>{{cliente.Nombre }}</strong></p>
+                <p class="card-text"><strong>Cedula :</strong> <strong style="color: brown;">{{ cliente.Cedula }}</strong></p>
+                <p class="card-text"><strong>Telefono :</strong> <strong style="color: brown;">{{ cliente.Telefono }}</strong></p>
+                <p class="card-text"><strong>Fecha Creacion :</strong> <strong style="color: brown;">{{ cliente.Fecha}}</strong></p>
+              
+                <center>
+                <form action="/resulmodipersona/{{cliente.Cedula}}" method="GET">
+                  <button type="submit" class="btn btn-primary" style = "width: 50% ; min-width: 4cm;" >Edit</button>
+                </form>
+                 <br>
+               <form action="/eliminarpersona/{{cliente.Cedula}}" method="GET">
+                  <button type="submit" class="btn btn-primary" style = "width: 50% ; min-width: 4cm;" >Eliminar</button>
+                </form>
+              </center>
+             </div>
+            </div>
+            {% endfor %}
+          </div>                                             
+    </div>
+
+
+
+{% endblock %}

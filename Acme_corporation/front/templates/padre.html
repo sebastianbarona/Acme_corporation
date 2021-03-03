@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    {% load static %}
+
+    {% block title %}
+  
+    <title> Acme Corporation</title>
+
+    {% endblock %}
+    
+      <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+      <link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet">
+      <!-- Animate CSS -->
+      <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+      <link href="{% static 'css/main.css' %}" rel="stylesheet">
+  
+  </head>
+  
+  <body>
+  <div class="loader">
+      <div class="loader-outter"></div>
+      <div class="loader-inner"></div>
+  </div>
+  
+  <div class="body-container container-fluid">
+      <a class="menu-btn" href="javascript:void(0)">
+          <i class="ion ion-grid"></i>
+      </a>
+      <div class="row justify-content-center">
+          <!--=================== side menu ====================-->
+ 
+          {% block content%}
+  
+          <div class="col-lg-2 col-md-3 col-12 menu_block">
+  
+              <!--main menu -->
+              <div class="side_menu_section">
+     
+                {% for s in usuario %}
+                <center>
+                <div class="cc-profile-image ">
+                    <a href="#">
+                        <img src="/Imagen_Perfil/{{s.Imagen_Perfil}}" alt="Image">
+                    </a>
+                </div>
+
+                <div class="h2 title">{{s.Username}}</div>
+
+                </center>
+                {% endfor %}
+                <br>
+    
+                <ul class="menu_nav">
+                      <li class="{% if request.path == '/home' %}active{% endif %}">
+                          <a href="{% url 'Home' %}">
+                              Home
+                          </a>
+                      </li>
+                      <li class="{% if request.path == '/usuario' %}active{% endif %}">
+                          <a href="{% url 'Usuario' %}">
+                              Usuarios
+                          </a>
+                      </li>
+  
+                      <li class="{% if request.path == '/persona' %}active{% endif %}">
+                          <a href="{% url 'Persona' %}">
+                              Clientes
+                          </a>
+                      </li>
+  
+                      <li class="{% if request.path == '/carro' %}active{% endif %}">
+                          <a href="{% url 'Carro' %}">
+                              Carros
+                          </a>
+                      </li>
+  
+                      <li class="{% if request.path == '/venta' %}active{% endif %} ">
+                          <a href="{% url 'Venta' %}">
+                              Ventas
+                          </a>
+                      </li>
+  
+                      <li class="{% if request.path == '/compra' %}active{% endif %} ">
+                          <a href="{% url 'Compra' %}">
+                              Compra
+                          </a>
+                      </li>
+                   </ul>
+              </div>            <!--main menu end -->
+  
+              <!--filter menu -->
+              <div class="side_menu_section">
+                  <h4 class="side_title">filter by:</h4>
+                  <ul  id="filtr-container"  class="filter_nav">
+                      <li  data-filter="*" class="active"><a href="javascript:void(0)" >all</a></li>
+                      <li data-filter=".branding"> <a href="javascript:void(0)">branding</a></li>
+                      <li data-filter=".design"><a href="javascript:void(0)">design</a></li>
+                      <li data-filter=".photography"><a href="javascript:void(0)">photography</a></li>
+                      <li data-filter=".architecture"><a href="javascript:void(0)">architecture</a></li>
+                  </ul>
+              </div>
+              <!--filter menu end -->
+  
+  
+          </div>
+         
+          <!--=================== content body ====================-->
+
+     
+          <div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+              <div>
+                <div class="col-md-6 col-5 img_section" style="background-image: url('assets/img/bg/about.png');"></div>
+              </div>
+          </div>
+          {% endblock %}
+
+          <!--=================== content body end ====================-->
+      </div>
+  </div>
+  
+  <!-- jquery -->
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <!-- bootstrap -->
+  <script src="{% static 'js/popper.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/slick.min.js' %}"></script>
+  <script src="{% static 'js/waypoints.min.js' %}"></script>
+  
+  <!--Portfolio Filter-->
+  <script src="{% static 'js/imgloaded.js' %}"></script>
+  <script src="{% static 'js/isotope.js' %}"></script>
+  <!-- Magnific-popup -->
+  <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+  <!--Counter-->
+  <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+  <!-- WOW JS -->
+  <script src="{% static 'js/wow.min.js' %}"></script>
+  <!-- Custom js -->
+  <script src="{% static 'js/main.js' %}"></script>
+  
+  </body>
+  </html>

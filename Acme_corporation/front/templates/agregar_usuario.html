@@ -1,0 +1,63 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block content%}
+
+<div class="col-lg-10 col-md-9 col-12 body_block  align-content-center">
+  <div>
+      <div class="img_card">
+          <div class="row justify-content-center">
+              <div class="col-md-6 col-7 content_section">
+                  <div class="content_box">
+                      <div class="content_box_inner">
+                          <div>
+                              <h3>
+                                 Agregar Usuario
+                              </h3>
+                              <p>
+                             Bienvenido a Acme Corporation recuerde llenar muy bien los campos antes de agregar un usuario. 
+                              </p>
+                              
+                                  
+                              <div class="mt75 row justify-content-center">
+                                <br>
+                                <br>
+
+                                {% if form.errors %}
+
+                                <div class="alert alert-danger" role="alert">No Registrado</div>
+              
+                                {% endif %}
+
+                                <div class="alert alert-light" role="alert">{{mensaje}}</div>
+                                 
+
+                                <div class="col-12">
+                                    <br>
+                                    <form method="POST" >{% csrf_token %}
+                                        
+                                        <table>{{form.as_table}}</table>
+
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+
+                                </form>
+                                </div>
+
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% endblock %}
